@@ -1,6 +1,6 @@
-project: Maccy.xcodeproj
+project: ClipNest.xcodeproj
 retain_objc_accessible: true
 schemes:
-- Maccy
+- ClipNest
 targets:
-- Maccy
+- ClipNest

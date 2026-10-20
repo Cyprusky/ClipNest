@@ -1,0 +1,17 @@
+name: macOS build and tests
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: Toolchain
+        run: xcodebuild -version
+      - name: Unit tests
+        run: ./scripts/build.sh test-all
+      - name: HTML external resource regression
+        run: python3 scripts/check-html-network.py

@@ -171,7 +171,7 @@ class HistoryItem {
       return nil
     }
 
-    return NSAttributedString(html: data, documentAttributes: nil)
+    return NSAttributedString.clipboardHTML(data)
   }
 
   var imageData: Data? {

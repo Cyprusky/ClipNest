@@ -163,6 +163,7 @@
 		F18F166970893C503065D056 /* View+ButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2945CD7912BE7C7D330C27 /* View+ButtonAction.swift */; };
 		FFFC00000000000000000001 /* String+UnsafeForTitleLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFC00000000000000000002 /* String+UnsafeForTitleLayout.swift */; };
 		FFFC00000000000000000003 /* UnsafeForTitleLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFC00000000000000000004 /* UnsafeForTitleLayoutTests.swift */; };
+		F10C00000000000000000001 /* NSAttributedString+ClipboardHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10C00000000000000000002 /* NSAttributedString+ClipboardHTML.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -606,6 +607,7 @@
 		F2E5FA9061DA4866BCFAFE90 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = km; path = km.lproj/AppearanceSettings.strings; sourceTree = "<group>"; };
 		FFFC00000000000000000002 /* String+UnsafeForTitleLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+UnsafeForTitleLayout.swift"; sourceTree = "<group>"; };
 		FFFC00000000000000000004 /* UnsafeForTitleLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeForTitleLayoutTests.swift; sourceTree = "<group>"; };
+		F10C00000000000000000002 /* NSAttributedString+ClipboardHTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+ClipboardHTML.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -671,6 +673,7 @@
 				DA9C3C462C20B91D0056795D /* String+Identifiable.swift */,
 				DAFE2DD9268A521A00990986 /* String+Shortened.swift */,
 				FFFC00000000000000000002 /* String+UnsafeForTitleLayout.swift */,
+				F10C00000000000000000002 /* NSAttributedString+ClipboardHTML.swift */,
 				EB2945CD7912BE7C7D330C27 /* View+ButtonAction.swift */,
 				9DC045710F4F8773D1A5EC87 /* View+Invisible.swift */,
 			);
@@ -1251,6 +1254,7 @@
 				DA3EAE0C2AE30F7500F39108 /* NSApplication+Windows.swift in Sources */,
 				DAFE2DDA268A521B00990986 /* String+Shortened.swift in Sources */,
 				FFFC00000000000000000001 /* String+UnsafeForTitleLayout.swift in Sources */,
+				F10C00000000000000000001 /* NSAttributedString+ClipboardHTML.swift in Sources */,
 				F18F166970893C503065D056 /* View+ButtonAction.swift in Sources */,
 				9B24FC30A093450F29E2CC4A /* View+Invisible.swift in Sources */,
 				DAC14124232367B200FCFA30 /* Search.swift in Sources */,

@@ -63,6 +63,51 @@ class HistoryItemTests: XCTestCase {
     XCTAssertEqual(item.title, "foo")
   }
 
+  func testHTMLPreviewPreservesTextAndOriginalClipboardData() throws {
+    let html = """
+    <html><head><style>p { background: url('https://example.invalid/style'); }</style></head>
+    <body><p>中文 &amp; café &#x1f600;<br><b>bold</b></p>
+    <img src="https://example.invalid/image"><script>hidden</script></body></html>
+    """.data(using: .utf8)!
+    let item = historyItem(html, .html)
+    let preview = try XCTUnwrap(item.html)
+
+    let lines = preview.string.components(separatedBy: .newlines)
+    XCTAssertTrue(lines.contains("中文 & café 😀"))
+    XCTAssertTrue(lines.contains("bold"))
+    XCTAssertFalse(preview.string.contains("hidden"))
+    XCTAssertFalse(preview.string.contains("background"))
+    XCTAssertEqual(item.htmlData, html)
+
+    let boldRange = (preview.string as NSString).range(of: "bold")
+    let font = try XCTUnwrap(preview.attribute(.font, at: boldRange.location, effectiveRange: nil) as? NSFont)
+    XCTAssertTrue(NSFontManager.shared.traits(of: font).contains(.boldFontMask))
+  }
+
+  func testHTMLPreviewPreservesBasicLayoutAndMalformedFragments() throws {
+    for html in [
+      "<div>first<br>second</div><p>third</p>",
+      "<ul><li>one</li><li>two</li></ul>",
+      "<pre>  code\n    next</pre>",
+      "<table><tr><td>A</td><td>B</td></tr></table>",
+      "<p>one<b>two"
+    ] {
+      let data = Data(html.utf8)
+      // These fixtures have no external resources; compare the existing renderer's layout.
+      let original = try XCTUnwrap(NSAttributedString(html: data, documentAttributes: nil))
+      let preview = try XCTUnwrap(NSAttributedString.clipboardHTML(data))
+      XCTAssertEqual(preview.string, original.string, html)
+    }
+  }
+
+  func testHTMLPreviewSupportsClipboardEncodings() throws {
+    let utf16 = "<p>中文 café 😀</p>".data(using: .utf16)!
+    XCTAssertTrue(try XCTUnwrap(NSAttributedString.clipboardHTML(utf16)).string.contains("中文 café 😀"))
+
+    let latin1 = "<meta charset='windows-1252'><p>café</p>".data(using: .windowsCP1252)!
+    XCTAssertTrue(try XCTUnwrap(NSAttributedString.clipboardHTML(latin1)).string.contains("café"))
+  }
+
   func testImage() {
     let image = NSImage(named: "NSBluetoothTemplate")!
     let item = historyItem(image)

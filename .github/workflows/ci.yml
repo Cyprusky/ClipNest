@@ -14,6 +14,7 @@ jobs:
       - name: Toolchain
         run: xcodebuild -version
       - name: Unit tests
+        timeout-minutes: 6
         run: ./scripts/build.sh test-all
       - name: HTML external resource regression
         if: ${{ !cancelled() }}

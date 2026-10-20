@@ -16,6 +16,7 @@ if [[ "$mode" == release ]]; then configuration=Release; fi
 if [[ "$mode" == test || "$mode" == test-all ]]; then
   action=test
   args+=(-test-timeouts-enabled YES -default-test-execution-time-allowance 60 -maximum-test-execution-time-allowance 60)
+  args+=(-enableCodeCoverage NO)
   if [[ "$mode" == test ]]; then
     # Avoid tests that overwrite the user's system clipboard during local development.
     for suite in HistoryItemTests HistoryTests HistoryItemDecoratorTests SearchTests SorterTests ShortenedTests ColorImageTests UnsafeForTitleLayoutTests CollectionSurroundingTests; do

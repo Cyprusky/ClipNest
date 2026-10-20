@@ -8,15 +8,12 @@ class SorterTests: XCTestCase {
   let savedPinTo = Defaults[.pinTo]
   let sorter = Sorter()
 
-  var item1: HistoryItem!
-  var item2: HistoryItem!
-  var item3: HistoryItem!
+  lazy var item1 = historyItem(value: "foo", firstCopiedAt: -300, lastCopiedAt: -100, numberOfCopies: 3)
+  lazy var item2 = historyItem(value: "bar", firstCopiedAt: -400, lastCopiedAt: -300, numberOfCopies: 2)
+  lazy var item3 = historyItem(value: "bar", firstCopiedAt: -200, lastCopiedAt: -200, numberOfCopies: 1)
 
-  override func setUp() async throws {
-    try await super.setUp()
-    item1 = historyItem(value: "foo", firstCopiedAt: -300, lastCopiedAt: -100, numberOfCopies: 3)
-    item2 = historyItem(value: "bar", firstCopiedAt: -400, lastCopiedAt: -300, numberOfCopies: 2)
-    item3 = historyItem(value: "bar", firstCopiedAt: -200, lastCopiedAt: -200, numberOfCopies: 1)
+  override func setUp() {
+    super.setUp()
     Defaults[.pinOrder] = PinOrder()
   }
 

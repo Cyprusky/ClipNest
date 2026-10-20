@@ -5,7 +5,7 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate {
   nonisolated static let isTesting = CommandLine.arguments.contains("enable-testing")
   // Hosted unit tests exercise models directly; UI tests launch a separate app.
-  nonisolated private static var isUnitTesting: Bool {
+  nonisolated static var isUnitTesting: Bool {
     isTesting && NSClassFromString("XCTestCase") != nil
   }
   var panel: FloatingPanel!

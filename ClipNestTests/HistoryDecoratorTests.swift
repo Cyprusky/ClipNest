@@ -60,7 +60,11 @@ class HistoryItemDecoratorTests: XCTestCase {
   }
 
   func testImage() {
-    let image = NSImage(named: "StatusBarMenuImage")!
+    let image = NSImage(size: NSSize(width: 16, height: 16), flipped: false) { rect in
+      NSColor.red.setFill()
+      rect.fill()
+      return true
+    }
     let itemDecorator = historyItemDecorator(image)
     itemDecorator.sizeImages()
     XCTAssertEqual(itemDecorator.title, "")

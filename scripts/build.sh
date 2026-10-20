@@ -17,7 +17,7 @@ if [[ "$mode" == test || "$mode" == test-all ]]; then
   action=test
   if [[ "$mode" == test ]]; then
     # Avoid tests that overwrite the user's system clipboard during local development.
-    for suite in HistoryItemTests HistoryTests HistoryDecoratorTests SearchTests SorterTests ShortenedTests ColorImageTests UnsafeForTitleLayoutTests CollectionSurroundingTests; do
+    for suite in HistoryItemTests HistoryTests HistoryItemDecoratorTests SearchTests SorterTests ShortenedTests ColorImageTests UnsafeForTitleLayoutTests CollectionSurroundingTests; do
       args+=("-only-testing:ClipNestTests/$suite")
     done
   else

@@ -4,6 +4,10 @@ import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
   nonisolated static let isTesting = CommandLine.arguments.contains("enable-testing")
+  // Hosted unit tests exercise models directly; UI tests launch a separate app.
+  nonisolated private static var isUnitTesting: Bool {
+    isTesting && NSClassFromString("XCTestCase") != nil
+  }
   var panel: FloatingPanel!
 
   @objc
@@ -41,6 +45,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       UserDefaults.standard.removePersistentDomain(forName: Defaults.Keys.testingSuiteName)
     }
     #endif
+
+    guard !Self.isUnitTesting else { return }
 
     // Bridge FloatingPanel via AppDelegate.
     AppState.shared.appDelegate = self
@@ -101,6 +107,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func applicationDidFinishLaunching(_ aNotification: Notification) {
+    guard !Self.isUnitTesting else { return }
     migrateUserDefaults()
     disableUnusedGlobalHotkeys()
 

@@ -52,6 +52,7 @@ class Clipboard {
   }
 
   func start() {
+    stop()
     timer = Timer.scheduledTimer(
       timeInterval: Defaults[.clipboardCheckInterval],
       target: self,
@@ -62,8 +63,12 @@ class Clipboard {
   }
 
   func restart() {
-    timer?.invalidate()
     start()
+  }
+
+  func stop() {
+    timer?.invalidate()
+    timer = nil
   }
 
   func isPersistable(_ type: NSPasteboard.PasteboardType) -> Bool {

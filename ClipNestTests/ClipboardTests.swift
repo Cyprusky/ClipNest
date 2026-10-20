@@ -35,6 +35,7 @@ class ClipboardTests: XCTestCase {
 
   override func tearDown() {
     super.tearDown()
+    clipboard.stop()
     Defaults[.enabledPasteboardTypes] = savedEnabledTypes
     Defaults[.ignoreEvents] = savedIgnoreEvents
     Defaults[.ignoreOnlyNextEvent] = false
